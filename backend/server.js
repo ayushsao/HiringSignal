@@ -15,6 +15,9 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, please try again later.",
 });
 
+// Trust proxy for Render deployment (fixes express-rate-limit warning)
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(limiter);
 
@@ -43,10 +46,15 @@ app.get("/", (_req, res) => {
 });
 
 // MongoDB connection
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+if (!process.env.MONGODB_URI) {
+  console.error("❌ MONGODB_URI environment variable is not set!");
+} else {
+  console.log("🔗 Attempting MongoDB connection...");
+  mongoose
+    .connect(process.env.MONGODB_URI)
+    .then(() => console.log("✅ MongoDB connected"))
+    .catch((err) => console.error("❌ MongoDB connection error:", err));
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
