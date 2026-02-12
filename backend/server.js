@@ -1,0 +1,42 @@
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const rateLimit = require("express-rate-limit");
+const resumeRoutes = require("./routes/resume");
+const authRoutes = require("./routes/auth");
+
+const app = express();
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: "Too many requests from this IP, please try again later.",
+});
+
+// Middleware
+app.use(limiter);
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true }));
+
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api", resumeRoutes);
+
+// Health check
+app.get("/", (_req, res) => {
+  res.json({ status: "HiringSignal API is running", version: "2.0.0" });
+});
+
+// MongoDB connection
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 HiringSignal backend running on port ${PORT}`);
+});
