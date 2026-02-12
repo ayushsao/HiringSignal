@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # HiringSignal — AI Resume Shortlisting Simulator
 
 A production-ready, full-stack AI-powered resume analysis tool that simulates real ATS + recruiter screening logic. Features user authentication, rate limiting, usage limits, and brutally honest AI feedback powered by Groq's Llama 3.3.
@@ -140,61 +140,8 @@ npm install
 npm run dev
 ```
 
-The app will be available at [http://localhost:5173](http://localhost:5173).
 
-### 3. Create Your First Account
 
-1. Navigate to [http://localhost:5173](http://localhost:5173)
-2. Click "Get Started" or "Sign Up"
-3. Create an account (free plan includes 3 analyses)
-4. Start analyzing resumes!
 
----
 
-## 🔑 API Endpoints
 
-### Authentication
-| Method | Endpoint             | Description                  | Auth Required |
-|--------|---------------------|------------------------------|---------------|
-| POST   | `/api/auth/signup`   | Create new user account      | No            |
-| POST   | `/api/auth/login`    | Login existing user          | No            |
-| GET    | `/api/auth/me`       | Get current user profile     | Yes           |
-| PUT    | `/api/auth/profile`  | Update user profile          | Yes           |
-
-### Resume Analysis
-| Method | Endpoint             | Description                  | Auth Required |
-|--------|---------------------|------------------------------|---------------|
-| POST   | `/api/upload`        | Upload PDF, extract text     | No            |
-| POST   | `/api/analyze-resume`| Analyze resume with AI       | Yes           |
-| GET    | `/api/history`       | List user's past analyses    | Yes           |
-| GET    | `/api/history/:id`   | Get single analysis detail   | Yes           |
-| DELETE | `/api/history/:id`   | Delete an analysis           | Yes           |
-
----
-
-## 🤖 AI Response Format
-
-```json
-{
-  "atsScore": 72,
-  "skillRelevanceScore": 68,
-  "projectDepthScore": 55,
-  "roleAlignmentScore": 74,
-  "strengths": ["Strong React experience", "Clean portfolio"],
-  "weaknesses": ["No backend projects", "Missing testing skills"],
-  "rejectionReason": "Insufficient backend experience for full-stack role",
-  "roleAlignmentFeedback": "Profile leans heavily frontend...",
-  "projectDepthFeedback": "Projects show UI work but lack scalability...",
-  "improvementSuggestion": "Add one full-stack project with authentication and database",
-  "overallVerdict": "On the Fence"
-}
-```
-
----
-
-## License
-
-MIT
-=======
-# HiringSignal
->>>>>>> 8b257d9cf7d9fbb57ac24a0577dbb8b050938c76
