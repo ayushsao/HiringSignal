@@ -40,10 +40,8 @@ mongoose
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`🚀 HiringSignal backend running on port ${PORT}`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`🚀 HiringSignal backend running on port ${PORT}`);
+});
 
 module.exports = app;
