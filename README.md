@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # HiringSignal — AI Resume Shortlisting Simulator
 
 A production-ready, full-stack AI-powered resume analysis tool that simulates real ATS + recruiter screening logic. Features user authentication, rate limiting, usage limits, and brutally honest AI feedback powered by Groq's Llama 3.3.
@@ -194,3 +195,6 @@ The app will be available at [http://localhost:5173](http://localhost:5173).
 ## License
 
 MIT
+=======
+# HiringSignal
+>>>>>>> 8b257d9cf7d9fbb57ac24a0577dbb8b050938c76
