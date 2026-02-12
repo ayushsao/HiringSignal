@@ -1,0 +1,12 @@
+{
+    "name": "hiring-signal-root",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "node backend/server.js",
+        "postinstall": "cd backend && npm install && cd ../frontend && npm install"
+    },
+    "workspaces": [
+        "backend",
+        "frontend"
+    ]
+}
