@@ -1,15 +1,71 @@
+// import axios from "axios";
+
+// const API = axios.create({
+//   baseURL: import.meta.env.VITE_API_URL || "/api",
+//   timeout: 120000, // 2 min timeout for AI processing
+// });
+
+// // Log the API URL being used
+// console.log("API Base URL:", API.defaults.baseURL);
+// console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+
+// // Add response interceptor for better error handling
+// API.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     console.error("API Error:", {
+//       message: error.message,
+//       response: error.response?.data,
+//       status: error.response?.status,
+//       baseURL: API.defaults.baseURL
+//     });
+//     return Promise.reject(error);
+//   }
+// );
+
+// export async function uploadResumePDF(file) {
+//   const formData = new FormData();
+//   formData.append("resume", file);
+//   const { data } = await API.post("/upload", formData, {
+//     headers: { "Content-Type": "multipart/form-data" },
+//   });
+//   return data;
+// }
+
+// export async function analyzeResume(resumeText, role, companyType) {
+//   const { data } = await API.post("/analyze-resume", {
+//     resumeText,
+//     role,
+//     companyType,
+//   });
+//   return data;
+// }
+
+// export async function getHistory() {
+//   const { data } = await API.get("/history");
+//   return data;
+// }
+
+// export async function getAnalysisById(id) {
+//   const { data } = await API.get(`/history/${id}`);
+//   return data;
+// }
+
+// export async function deleteAnalysis(id) {
+//   const { data } = await API.delete(`/history/${id}`);
+//   return data;
+// }
+
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "/api",
-  timeout: 120000, // 2 min timeout for AI processing
+  baseURL: import.meta.env.VITE_API_URL,
+  timeout: 120000,
 });
 
-// Log the API URL being used
+// Debug log (optional, can remove later)
 console.log("API Base URL:", API.defaults.baseURL);
-console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
 
-// Add response interceptor for better error handling
 API.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -17,7 +73,7 @@ API.interceptors.response.use(
       message: error.message,
       response: error.response?.data,
       status: error.response?.status,
-      baseURL: API.defaults.baseURL
+      baseURL: API.defaults.baseURL,
     });
     return Promise.reject(error);
   }
@@ -26,32 +82,36 @@ API.interceptors.response.use(
 export async function uploadResumePDF(file) {
   const formData = new FormData();
   formData.append("resume", file);
-  const { data } = await API.post("/upload", formData, {
+
+  const { data } = await API.post("/api/upload", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
+
   return data;
 }
 
 export async function analyzeResume(resumeText, role, companyType) {
-  const { data } = await API.post("/analyze-resume", {
+  const { data } = await API.post("/api/analyze-resume", {
     resumeText,
     role,
     companyType,
   });
+
   return data;
 }
 
 export async function getHistory() {
-  const { data } = await API.get("/history");
+  const { data } = await API.get("/api/history");
   return data;
 }
 
 export async function getAnalysisById(id) {
-  const { data } = await API.get(`/history/${id}`);
+  const { data } = await API.get(`/api/history/${id}`);
   return data;
 }
 
 export async function deleteAnalysis(id) {
-  const { data } = await API.delete(`/history/${id}`);
+  const { data } = await API.delete(`/api/history/${id}`);
   return data;
 }
+  
