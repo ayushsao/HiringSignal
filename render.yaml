@@ -13,6 +13,6 @@ services:
       - key: GROQ_API_KEY
         sync: false
       - key: JWT_SECRET
-        sync: false
+        generateValue: true
       - key: FRONTEND_URL
-        sync: false
+        value: https://hiring-signal-seven.vercel.app

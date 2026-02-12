@@ -5,6 +5,20 @@ const API = axios.create({
   timeout: 120000, // 2 min timeout for AI processing
 });
 
+// Add response interceptor for better error handling
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error("API Error:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+      baseURL: API.defaults.baseURL
+    });
+    return Promise.reject(error);
+  }
+);
+
 export async function uploadResumePDF(file) {
   const formData = new FormData();
   formData.append("resume", file);

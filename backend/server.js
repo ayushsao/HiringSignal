@@ -17,12 +17,17 @@ const limiter = rateLimit({
 
 // Middleware
 app.use(limiter);
+
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "https://hiring-signal-seven.vercel.app",
+  "http://localhost:5173"
+].filter(Boolean);
+
+console.log("Allowed CORS origins:", allowedOrigins);
+
 app.use(cors({
-  origin: [
-    process.env.FRONTEND_URL || "http://localhost:5173",
-    "https://hiring-signal-seven.vercel.app",
-    "http://localhost:5173"
-  ],
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(express.json({ limit: "10mb" }));
