@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
     async function loadUser() {
       if (token) {
         try {
-          const res = await axios.get("http://localhost:5000/api/auth/me");
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/auth/me`);
           setUser(res.data.user);
         } catch (error) {
           console.error("Failed to load user:", error);
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
   }, [token]);
 
   async function signup(name, email, password) {
-    const res = await axios.post("http://localhost:5000/api/auth/signup", {
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, {
       name,
       email,
       password,
@@ -47,7 +47,7 @@ export function AuthProvider({ children }) {
   }
 
   async function login(email, password) {
-    const res = await axios.post("http://localhost:5000/api/auth/login", {
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {
       email,
       password,
     });
@@ -67,7 +67,7 @@ export function AuthProvider({ children }) {
   async function refreshUser() {
     if (token) {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/me");
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/auth/me`);
         setUser(res.data.user);
       } catch (error) {
         console.error("Failed to refresh user:", error);
