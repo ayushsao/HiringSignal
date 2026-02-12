@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "start": "node backend/server.js",
-        "postinstall": "cd backend && npm install --legacy-peer-deps && cd ../frontend && npm install --legacy-peer-deps"
+        "build": "npm run build --workspace=frontend"
     },
     "workspaces": [
         "backend",

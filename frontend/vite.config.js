@@ -12,4 +12,14 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei"],
+        },
+      },
+    },
+  },
 });
