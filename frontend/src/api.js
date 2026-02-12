@@ -5,6 +5,10 @@ const API = axios.create({
   timeout: 120000, // 2 min timeout for AI processing
 });
 
+// Log the API URL being used
+console.log("API Base URL:", API.defaults.baseURL);
+console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+
 // Add response interceptor for better error handling
 API.interceptors.response.use(
   (response) => response,

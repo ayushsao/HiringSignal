@@ -63,8 +63,20 @@ export default function AnalyzePage() {
         },
       });
     } catch (err) {
-      console.error(err);
-      toast.error(err?.response?.data?.error || "Analysis failed. Please try again.");
+      console.error("Analysis error:", err);
+      let errorMessage = "Analysis failed. Please try again.";
+      
+      if (err?.response?.data?.error) {
+        errorMessage = err.response.data.error;
+      } else if (err?.message) {
+        errorMessage = err.message;
+      } else if (err?.code === 'ECONNABORTED') {
+        errorMessage = "Request timeout. Server may be starting up.";
+      } else if (err?.code === 'ERR_NETWORK') {
+        errorMessage = "Cannot connect to server. Please try again.";
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
