@@ -314,32 +314,7 @@ export default function HomePage() {
           </motion.button>
         </motion.div>
 
-        {/* Stats */}
-        <motion.div
-          ref={statsRef}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-20 grid grid-cols-3 gap-8 text-center"
-        >
-          <div ref={stat1Ref}>
-            <div className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent">
-              {stat1Count}
-            </div>
-            <div className="text-sm text-gray-400 mt-1">Score Dimensions</div>
-          </div>
-          <div ref={stat2Ref}>
-            <div className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent">
-              {stat2Count}+
-            </div>
-            <div className="text-sm text-gray-400 mt-1">Role Templates</div>
-          </div>
-          <div ref={stat3Ref}>
-            <div className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent">
-              {stat3Count}
-            </div>
-          </div>
-        </motion.div>
+        {/* Removed duplicate stats section that was rendering twice */}
       </div>
     </>
   );
